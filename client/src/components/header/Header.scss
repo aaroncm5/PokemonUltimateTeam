@@ -1,0 +1,21 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+    display:flex;
+    flex-direction: row;
+    height: 10vh;
+        background-color: black;
+
+    &-logo {
+        
+
+        &__icon {
+            height: 100%;
+
+            &-image {
+                height:100%;
+            }
+        }
+    }
+}
