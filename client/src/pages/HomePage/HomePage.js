@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 
 function HomePage() {
-    const [team, setTeam] = useState([]);
+    // const [team, setTeam] = useState([]);
 
 
     

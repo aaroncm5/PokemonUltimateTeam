@@ -1,4 +1,6 @@
 import './SingleMon.scss';
+import {Link} from 'react-router-dom';
+
 
 function SingleMon( {ability1, ability2, attack, defense, special_attack, special_defense, speed, id, name, type1, type2, sprite } ) {
 
@@ -11,7 +13,10 @@ function SingleMon( {ability1, ability2, attack, defense, special_attack, specia
             
             <div className='pokemon-button'>
                 <button className="pokemon-button__add">Add</button>
-                <button className="pokemon-button__details">Details</button>
+                <Link to={`/details/${id}`}>
+                    <button className="pokemon-button__details">Details</button>
+                </Link>
+                
             </div>
             
         </section>
