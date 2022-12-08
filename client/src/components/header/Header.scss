@@ -4,9 +4,14 @@
 .header {
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
     height: 10vh;
-        background-color: black;
-
+    background-image: url(../../assets/icons/pngegg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: black;
+    padding: 0.5rem 1rem;
     &-logo {
         
 
@@ -17,5 +22,19 @@
                 height:100%;
             }
         }
+    }
+}
+
+.nav {
+    display: none;
+}
+
+.mobile-menu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        height: 50%;
     }
 }

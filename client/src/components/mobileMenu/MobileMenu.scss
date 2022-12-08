@@ -1,0 +1,17 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+.mobile-nav{
+    display: flex;
+    flex-direction: column;
+    z-index: 69;
+    position: absolute;
+    background-color: red;
+    top: 1%;
+    right: 1%;
+
+    &__header {
+        display: flex;
+    }
+
+}
