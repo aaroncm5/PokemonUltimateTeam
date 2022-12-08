@@ -1,6 +1,6 @@
 import logo from '../../assets/Logo/Logo.png';
 import menu from '../../assets/icons/menu.png'
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useState} from 'react';
 import './Header.scss'
 import MobileMenu from '../mobileMenu/MobileMenu';
@@ -31,10 +31,10 @@ function Header() {
             </div>
             <nav className='nav'>
                 <ul className='nav-list'>
-                    <Link className='nav-list__item' to='/'>Home</Link>
-                    <Link className='nav-list__item' to='/'>Login/Signup</Link>
-                    <Link className='nav-list__item' to='/'>Community</Link>
-                    <Link className='nav-list__item' to='/'>FAQ</Link>
+                    <NavLink className='nav-list__item' to='/'>Home</NavLink>
+                    <NavLink className='nav-list__item' to='/'>Login/Signup</NavLink>
+                    <NavLink className='nav-list__item' to='/'>Community</NavLink>
+                    <NavLink className='nav-list__item' to='/'>FAQ</NavLink>
                 </ul>
             </nav>
         </header>

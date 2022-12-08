@@ -47,16 +47,20 @@
 
         &__item {
             @include tablet{
-                text-align: center;
-                vertical-align: middle;
-                padding: 0.5rem;
+                display: flex;
+                align-items: center;
+                padding: 0 0.5rem;
                 text-decoration: none;
                 color: white;
-                // height: 100%;
+                height: 100%;
             }
         }
     }
 
+}
+
+.active {
+    background-color: red;
 }
 
 .mobile-menu {

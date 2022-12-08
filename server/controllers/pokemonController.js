@@ -46,3 +46,32 @@ exports.getAllPokemon = (req, res) => {
     );
 
 }
+
+exports.getIndividualPokemon = (req, res) => {
+    knex('pokemonList')
+    .where({id: req.params.id})
+    .then((data) => {
+        res.status(200).json(data)
+    })
+    .catch((err) => 
+        res.status(400).send('error retrieving list pokemon with this ID')
+    );
+}
+
+exports.getPokemonMoves = (req, res) => {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.id}/`)
+    .then((data) => {
+        moveArray = data.data.moves
+
+        const moveList = moveArray.map((move) => {
+            moveObj = {
+                name: move.move.name,
+                url: move.move.url
+            }
+
+            return moveObj
+        })
+
+        res.json(moveList)
+    })
+}
