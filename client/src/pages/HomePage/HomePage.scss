@@ -1,0 +1,15 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+
+.container {
+    @include tablet {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    @include desktop {
+        margin: 0 10rem;
+    }
+}
