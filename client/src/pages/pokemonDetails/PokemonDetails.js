@@ -23,6 +23,7 @@ ChartJS.register(
 function PokemonDetails() {
     const {pokeId} = useParams();
     const [currentPokemon, setCurrentPokemon] = useState({})
+    const [pokemonMoveList, setPokemonMoveList] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:8080/pokemon/${pokeId}`)
@@ -33,6 +34,18 @@ function PokemonDetails() {
             console.log(error)
         })
     }, [pokeId])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/pokemon/${pokeId}/moves`)
+        .then(res => {
+            setPokemonMoveList(res.data);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }, [pokeId])
+
+    console.log(pokemonMoveList)
 
     // set data and data styles for radar chart
     const data= {
