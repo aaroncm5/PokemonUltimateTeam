@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react';
 
 
 function HomePage() {
+    const [team, setTeam] = useState([]);
 
-    const [pokeList, setPokeList] = useState([])
+
+    
+    const [pokeList, setPokeList] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:8080/pokemon/all`)
         .then((res) => {
@@ -19,6 +22,8 @@ function HomePage() {
             <div>loading</div>
         )
     }
+
+
 
     console.log(pokeList);
     return(
