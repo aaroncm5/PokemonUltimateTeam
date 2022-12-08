@@ -26,15 +26,15 @@ function Header() {
                 
             </div>
             <div className='mobile-menu'>
-                <img onClick={() => handleClick(true)} className='mobile-menu__icon' src={menu} alt="" />
+                <img className='mobile-menu__icon' onClick={() => handleClick(true)} src={menu} alt="" />
                 <MobileMenu onClose={closeMenu} show={show}/>
             </div>
             <nav className='nav'>
                 <ul className='nav-list'>
-                    <Link to='/'>Home</Link>
-                    <Link to='/'>login/Signup</Link>
-                    <Link to='/'>Community</Link>
-                    <Link to='/'>FAQ</Link>
+                    <Link className='nav-list__item' to='/'>Home</Link>
+                    <Link className='nav-list__item' to='/'>Login/Signup</Link>
+                    <Link className='nav-list__item' to='/'>Community</Link>
+                    <Link className='nav-list__item' to='/'>FAQ</Link>
                 </ul>
             </nav>
         </header>

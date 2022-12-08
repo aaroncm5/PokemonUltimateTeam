@@ -22,7 +22,7 @@ function HomePage() {
 
     console.log(pokeList);
     return(
-        <section>
+        <section className='container'>
             {pokeList.map((pokemon) => {
                 const { ability1, ability2, attack, defense, special_attack, special_defense, speed, id, name, type1, type2, sprite } = pokemon
 
