@@ -1,0 +1,42 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+
+.details {
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+
+    &-details {
+        width: 100%;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        gap: 0.5rem;
+
+        &__sprite {
+            height: 20rem;
+        }
+
+        &__name {
+            text-transform: capitalize;
+        }
+
+        &-type{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            text-transform: capitalize;
+        }
+
+        &__text {
+            margin: 0;
+        }
+
+        
+    }
+    &-stats {
+        // background-color: blue;
+    }
+}
