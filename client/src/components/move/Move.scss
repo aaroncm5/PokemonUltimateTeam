@@ -1,0 +1,28 @@
+
+.display{
+    display: flex;
+    flex-direction: column;
+}
+
+.hide{
+    display:none
+} 
+
+.move-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.move-title {
+    display: flex;
+    justify-content: space-between;
+
+    &__buttons {
+        display: flex;
+        
+    }
+
+    &__text{
+        margin: 0;
+    }
+}

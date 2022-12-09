@@ -9,6 +9,11 @@ router.route('/:id')
     .get(pokemonController.getIndividualPokemon);
 
 router.route('/:id/moves')
-    .get(pokemonController.getPokemonMoves)
+    .get(pokemonController.getPokemonMoves);
+
+router.route('/:id/defaultInfo')
+    .get(pokemonController.getDefaultInfo);
+
+
 
 module.exports = router;
