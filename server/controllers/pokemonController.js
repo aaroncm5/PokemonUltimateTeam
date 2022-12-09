@@ -131,3 +131,44 @@ exports.getDefaultInfo = (req, res) => {
         res.json(pokemon)
     })
 }
+
+exports.getPokemonWithMoves = (req, res) => {
+    const pokemonArray = []
+    for (i=130; i<151; i++) {
+        const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+        pokemonArray.push(pokemonUrl);
+    }
+
+    axios.all(pokemonArray.map((pokemon) => axios.get(pokemon)))
+    .then(axios.spread((...data) => {
+
+        const newPokemon = data.map((mons) => {
+
+            const learnedMoves = []
+            const pokeMoves = mons.data.moves.map((move) => {
+                learnedMoves.push(move.move.name)
+            })
+
+            pokemon = {
+                id: mons.data.id,
+                name: mons.data.name,
+                hp: mons.data.stats[0].base_stat,
+                attack: mons.data.stats[1].base_stat,
+                defense: mons.data.stats[2].base_stat,
+                special_attack: mons.data.stats[3].base_stat,
+                special_defense: mons.data.stats[4].base_stat,
+                speed: mons.data.stats[5].base_stat,
+                ability1: mons.data.abilities[0].ability.name,
+                ability2: mons.data.abilities[1]?.ability.name,
+                sprite: mons.data.sprites.other.home.front_default,
+                type1: mons.data.types[0].type.name,
+                type2: mons.data.types[1]?.type.name,
+                moves: JSON.stringify(learnedMoves)
+                
+            }
+
+            return pokemon
+        }) 
+        res.json(newPokemon)
+    }))
+}

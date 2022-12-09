@@ -16,8 +16,8 @@ exports.up = function(knex) {
         table.integer('special_attack').notNullable();
         table.integer('special_defense').notNullable();
         table.integer('speed').notNullable();
-        table.string('ability').notNullable();
-        table.string('ability_description').notNullable();
+        table.string('ability1').notNullable();
+        table.string('ability2');
         table.integer('move1').notNullable();
         table.integer('move2');
         table.integer('move3');
