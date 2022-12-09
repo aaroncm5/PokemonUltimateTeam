@@ -2,13 +2,13 @@
 exports.up = function(knex) {
     return knex.schema.createTable('moves', (table) => {
         table.integer('id').primary();
-        table.string('name').notNullable();
-        table.string('type').notNullable();
-        table.string('effect').notNullable();
-        table.integer('power').notNullable();
-        table.integer('accuracy').notNullable();
-        table.integer('power_points').notNullable();
-        table.integer('priority').notNullable();
+        table.string('name');
+        table.string('type');
+        table.string('effect');
+        table.integer('power');
+        table.integer('accuracy');
+        table.integer('power_points');
+        table.integer('priority');
         table.timestamps(true, true);
       })
 };

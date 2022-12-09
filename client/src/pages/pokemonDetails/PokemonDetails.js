@@ -11,6 +11,7 @@ import { Radar } from 'react-chartjs-2';
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Move from '../../components/move/Move';
 
 ChartJS.register(
     LineElement,
@@ -59,9 +60,15 @@ function PokemonDetails() {
         datasets: [{
             label: currentPokemon.name,
             data: [currentPokemon.hp, currentPokemon.attack,currentPokemon.special_attack,currentPokemon.speed,currentPokemon.special_defense,currentPokemon.defense],
-            backgroundColor: 'red',
-            borderColor: 'red',
-            fill: true
+            // backgroundColor: 'black',
+            // borderColor: 'white',
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
         }]
     }
 
@@ -93,6 +100,7 @@ function PokemonDetails() {
 
     return (
         <section className='details'>
+            <button>ADD TO TEAM</button>
             <div className='details-details'>
                 <img className='details-details__sprite' src={currentPokemon.sprite} alt="" />
                 <h1 className='details-details__name'>{currentPokemon.name}</h1>
@@ -109,7 +117,14 @@ function PokemonDetails() {
                 <Radar data = {data} options={options} />
             </div>
             <div>
+                <h2>Move List</h2>
+                {pokemonMoveList.map((move) => {
+                    const {name, url} = move
 
+                    return(
+                        <Move name={name} key={url} url={url}/>
+                    )
+                })}
             </div>
         </section>
     )

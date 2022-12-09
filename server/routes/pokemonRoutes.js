@@ -8,7 +8,14 @@ router.route('/all')
 router.route('/:id')
     .get(pokemonController.getIndividualPokemon);
 
-router.route('/:id/moves')
-    .get(pokemonController.getPokemonMoves)
+router.route('/:id/default')
+    .get(pokemonController.getDefaultPokemon);
+
+router.route('/move/:name')
+    .get(pokemonController.moveDetails);
+
+
+
+
 
 module.exports = router;

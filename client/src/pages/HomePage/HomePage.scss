@@ -3,6 +3,8 @@
 
 
 .container {
+    background-color: #222426;
+
     @include tablet {
         display: flex;
         flex-wrap: wrap;
