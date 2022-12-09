@@ -8,11 +8,13 @@ router.route('/all')
 router.route('/:id')
     .get(pokemonController.getIndividualPokemon);
 
-router.route('/:id/moves')
-    .get(pokemonController.getPokemonMoves);
+router.route('/:id/default')
+    .get(pokemonController.getDefaultPokemon);
 
-router.route('/:id/defaultInfo')
-    .get(pokemonController.getDefaultInfo);
+router.route('/move/:name')
+    .get(pokemonController.moveDetails);
+
+
 
 
 

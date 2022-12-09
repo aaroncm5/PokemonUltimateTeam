@@ -9,7 +9,7 @@ function HomePage() {
     const [unfinished, setunfinished] = useState(null)
 
     const addToTeamDefault = (id) => {
-        axios.get(`http://localhost:8080/pokemon/${id}/defaultInfo`)
+        axios.get(`http://localhost:8080/pokemon/${id}/default`)
         .then((res) => {
             setunfinished(res.data);
         })

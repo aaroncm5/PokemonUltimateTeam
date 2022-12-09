@@ -14,7 +14,7 @@ exports.up = function(knex) {
         table.string('sprite').notNullable();
         table.string('type1').notNullable();
         table.string('type2');
-        table.json('moves');
+        table.string('moves', 10000);
       })
 };
 
