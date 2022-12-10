@@ -92,7 +92,7 @@ function HomePage() {
         // backgroundColor: 'black',
         // borderColor: 'white',
 
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        backgroundColor: "white",
         borderColor: "rgb(255, 99, 132)",
         pointBackgroundColor: "rgb(255, 99, 132)",
         pointBorderColor: "#fff",
