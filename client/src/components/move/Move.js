@@ -1,43 +1,38 @@
 import './Move.scss';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 
-function Move({name, url}) {
+function Move({name}) {
     const [moveInfo, setMoveInfo] = useState(null)
 
-    const [isOpen, setIsOpen] = useState(false)
-    // console.log(url)
+    const [isOpen, setIsOpen] = useState(false)    // console.log(newName)
 
-
-    const displayInfo = () =>{
+    const displayInfo = (name) =>{
         setIsOpen(!isOpen);
         
-        axios.get(url)
+        axios.get(`http://localhost:8080/pokemon/move/${name}`)
         .then((res) => {
-            // console.log(res.data)
-            setMoveInfo(res.data);
+            setMoveInfo(res.data[0]);
         })  
-    }    
+    }  
 
     return (
         <section className='move-container'>
             <div className='move-title'>
                 <p className='move-title__text'>{name}</p>
                 <div className='move-title__buttons'>
-                    <button className='move-title__info' onClick={displayInfo}>See Move Info</button>
+                    <button className='move-title__info' onClick={() => {displayInfo(name)}}>See Move Info</button>
                     <button className='move-title__add'>Add Move</button>
                 </div>
                
             </div>
 
             <div className={`${isOpen? 'display': 'hide'}`}>
-                <p>{moveInfo?.name}</p>
-                <p>damage type: {moveInfo?.damage_class.name}</p>
                 <p>power: {moveInfo?.power}</p>
-                <p>effect: {moveInfo?.effect_entries[0].short_effect}</p>
+                <p>effect: {moveInfo?.effect}</p>
                 <p>accuracy: {moveInfo?.accuracy}</p>
-                <p>pp: {moveInfo?.pp}</p>
+                <p>pp: {moveInfo?.power_points}</p>
                 <p>priority: {moveInfo?.priority}</p>
             </div>
         </section>

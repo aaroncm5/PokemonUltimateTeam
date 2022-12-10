@@ -30,23 +30,27 @@ function PokemonDetails() {
         axios.get(`http://localhost:8080/pokemon/${pokeId}`)
         .then(res => {
             setCurrentPokemon(res.data[0]);
+            setPokemonMoveList(JSON.parse(res.data[0].moves))
         })
         .catch(error => {
             console.log(error)
         })
     }, [pokeId])
 
-    useEffect(() => {
-        axios.get(`http://localhost:8080/pokemon/${pokeId}/moves`)
-        .then(res => {
-            setPokemonMoveList(res.data);
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }, [pokeId])
+    // console.log(currentPokemon)
+    
 
-    console.log(pokemonMoveList)
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8080/pokemon/${pokeId}/moves`)
+    //     .then(res => {
+    //         setPokemonMoveList(res.data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     })
+    // }, [pokeId])
+
+    // console.log(pokemonMoveList)
 
     // set data and data styles for radar chart
     const data= {
@@ -119,10 +123,10 @@ function PokemonDetails() {
             <div>
                 <h2>Move List</h2>
                 {pokemonMoveList.map((move) => {
-                    const {name, url} = move
+                    
 
                     return(
-                        <Move name={name} key={url} url={url}/>
+                        <Move name={move} key={move}/>
                     )
                 })}
             </div>

@@ -2,6 +2,7 @@ const knex = require('knex')(require('../knexfile'));
 const axios = require('axios');
 const { json } = require('express');
 const express = require('express');
+const {uuid} = require('uuidv4');
 
 exports.getAllPokemon = (req, res) => {
     knex('pokemonList')
@@ -58,3 +59,9 @@ exports.getDefaultPokemon =(req, res) => {
     );
 }
 
+exports.postTeam = (req, res) => {
+
+    console.req.body
+
+    knex('teams')
+}
