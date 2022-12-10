@@ -1,12 +1,33 @@
 import './HomePage.scss';
 import SingleMon from '../../components/singleMon/SingleMon';
+import TeamMember from '../../components/teamMember/TeamMember';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Radar } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    LineElement,
+    PointElement,
+    Tooltip,
+    RadialLinearScale,
+} from 'chart.js';
+
+ChartJS.register(
+    LineElement,
+    PointElement,
+    Tooltip,
+    RadialLinearScale
+)
 
 
 function HomePage() {
     const [team, setTeam] = useState([]);
-    // const [unfinished, setunfinished] = useState([])
+    const [teamHp, setTeamHp] = useState(0)
+    const [teamAtk, setTeamAtk] = useState(0)
+    const [teamDef, setTeamDef] = useState(0)
+    const [teamSpAtk, setTeamSpAtk] = useState(0)
+    const [teamSpDef, setTeamSpDef] = useState(0)
+    const [teamSpd, setTeamSpd] = useState(0)
 
     const addToTeamDefault = (id) => {
 
@@ -20,7 +41,27 @@ function HomePage() {
         })
     }
 
-    console.log(team)
+    useEffect(() => {
+        const teamStats = [0, 0, 0, 0, 0, 0]
+        for (let i=0; i < team.length; i++) {
+            teamStats[0] += team[i].hp
+            teamStats[1] += team[i].attack
+            teamStats[2] += team[i].defense
+            teamStats[3] += team[i].special_attack
+            teamStats[4] += team[i].special_defense
+            teamStats[5] += team[i].speed
+        }
+
+        setTeamHp(teamStats[0])
+        setTeamAtk(teamStats[1])
+        setTeamDef(teamStats[2])
+        setTeamSpAtk(teamStats[3])
+        setTeamSpDef(teamStats[4])
+        setTeamSpd(teamStats[5])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [team.length])
+        
 
 
 
@@ -39,27 +80,101 @@ function HomePage() {
         )
     }
 
+    // set data and data styles for radar chart
+    const data= {
+        labels: [`Hp: ${teamHp}`,
+            `Atk: ${teamAtk}`,
+            `Sp_Atk: ${teamSpAtk}`, 
+            `Spd: ${teamSpd}`,
+            `Sp_Def: ${teamSpDef}`, 
+            `Def: ${teamSpDef}`
+        ],
+        datasets: [{
+            label: 'Team Stats',
+            data: [teamHp, teamAtk,teamSpAtk,teamSpd,teamSpDef,teamDef],
+            // backgroundColor: 'black',
+            // borderColor: 'white',
+            
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }]
+    }
+
+     // set chart styles and scales for radar chart
+    const options={
+        scales: {
+            r: {
+                angleLines: {
+                    display: true,
+                    color: 'white'
+                },
+                pointedLabels: {
+                    backdropColor: 'white'	
+                },
+                grid: {
+                    color: 'white'
+                },
+                title: {
+                    display: true
+                },
+                suggestedMin: 0,
+                suggestedMax: 250,
+                ticks: {
+                   display: false
+                },
+                fill: true,
+            }
+        }
+    }
+
 
 
     return(
         <section className='container'>
 
             
-            <div className='create-team'>
-                <h1 className='create-team__title'>Team Name Here</h1>
+            <div className='create'>
+                <h1 className='create__title'>Team Name Here</h1>
                 <div className='create-team'>
-                    <div className='create-team-1'>mon1</div>
-                    <div className='create-team-1'>mon2</div>
-                    <div className='create-team-1'>mon3</div>
-                    <div className='create-team-1'>mon4</div>
-                    <div className='create-team-1'>mon5</div>
-                    <div className='create-team-1'>mon6</div>
+                    {team.map((member) => {
+
+                    const { ability1, ability2, attack, defense, special_attack, special_defense, speed, id, name, type1, type2, sprite, moves } = member
+
+                    return (
+                        <TeamMember
+                        key={id}
+                        ability1={ability1}
+                        ability2={ability2}
+                        attack={attack}
+                        defense={defense}
+                        special_attack={special_attack}
+                        special_defense={special_defense}
+                        speed={speed}
+                        id={id}
+                        name={name}
+                        type1={type1}
+                        type2={type2}
+                        sprite={sprite}
+                        moves={moves}
+                        />
+                    )
+                    })}
                 </div>
-                <button>Save Team</button>
+                <button className='create__save'>Save Team</button>
+                <button className='create__clear'>Clear</button>
 
             </div>
+
+            <div className='details-stats'>
+                <Radar data = {data} options={options} />
+                hp: {teamHp}
+            </div>
             
-            <div>
+            <div className='pokemon-list-container'>
                 {pokeList.map((pokemon) => {
                     const { ability1, ability2, attack, defense, special_attack, special_defense, speed, id, name, type1, type2, sprite } = pokemon
 

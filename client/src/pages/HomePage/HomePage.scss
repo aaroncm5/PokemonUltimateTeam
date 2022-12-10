@@ -4,6 +4,13 @@
 
 .container {
     background-color: #222426;
+    width: 100%;
+
+    
+}
+
+.pokemon-list-container {
+    width: 100%;
 
     @include tablet {
         display: flex;
@@ -12,6 +19,29 @@
     }
 
     @include desktop {
-        margin: 0 10rem;
+        padding: 0 10rem;
     }
+}
+
+.create {
+    width: 100%;
+
+    &-team{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 8rem;
+
+        &-member {
+            height: 10rem;
+            width: 33%;
+            vertical-align: middle;
+            text-align: center;
+            border: 1px solid white;
+        }
+        
+    }
+
+
 }
