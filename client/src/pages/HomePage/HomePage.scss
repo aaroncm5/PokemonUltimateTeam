@@ -5,8 +5,36 @@
 .container {
     background-color: #222426;
     width: 100%;
+}
 
-    
+.team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-stats {
+    width: 75%;
+}
+
+.create {
+    width: 100%;
+
+    &-team{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        // padding: 0 8rem;
+
+        &-member {
+            height: 10rem;
+            width: 50%;
+            vertical-align: middle;
+            text-align: center;
+            border: 1px solid white;
+        }   
+    }
 }
 
 .pokemon-list-container {
@@ -23,25 +51,3 @@
     }
 }
 
-.create {
-    width: 100%;
-
-    &-team{
-        display: flex;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0 8rem;
-
-        &-member {
-            height: 10rem;
-            width: 33%;
-            vertical-align: middle;
-            text-align: center;
-            border: 1px solid white;
-        }
-        
-    }
-
-
-}

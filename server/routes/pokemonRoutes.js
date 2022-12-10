@@ -14,6 +14,9 @@ router.route('/:id/default')
 router.route('/move/:name')
     .get(pokemonController.moveDetails);
 
+router.route('/team')
+    .post(pokemonController.postTeam);
+
 
 
 
