@@ -38,7 +38,7 @@ function PokemonDetails() {
         })
     }, [pokeId])
 
-    const addMove = (move) => {
+    const addMove = (move, type) => {
         if (customMoveList.length > 3) {
             return
         }
@@ -105,34 +105,47 @@ function PokemonDetails() {
     return (
         <section className='details'>
             <div className='details-button'>
-                <button className='details-button__add'>ADD TO TEAM</button>
-                <button onClick={() => {clearMoves()}} className='details-button__clear'>Clear Moves</button>
+                <button className='details-button__add'>+</button>
             </div>
             
+            <div className='pokemon-info-container'>
+                <div className='details-details'>
+                    <img className='details-details__sprite' src={currentPokemon.sprite} alt="" />
+                    <h1 className='details-details__name'>{currentPokemon.name}</h1>
+                    <div className='details-details-type'>
+                        <h3 className='details-details-type__title'>Type:</h3>
+                        <div className='details-details-type__container'>
+                            <h3 className={`details-details__text ${currentPokemon.type1}`}>{currentPokemon.type1}</h3>
+                            <h3 className={`details-details__text ${currentPokemon.type2}`}>{currentPokemon.type2}</h3>
+                        </div>
+                        
+                    </div>
+                    <div className='details-details__ability'>
+                        <h3 className='details-details__ability-title'>Ability:</h3>
+                        <div className='details-details__ability-container'>
+                            <h3 className='details-details__ability-text'>{currentPokemon.ability1}</h3>
+                            <h3 className='details-details__ability-text'>{currentPokemon.ability2}</h3> 
+                        </div>
+                        
+                    </div>
+                    <div className='details-custom__moves'>
+                        <h3 className='details-custom__moves-title'>Moves</h3>
+                        <div className='details-custom__moves-list'>
+                            {customMoveList.map((move) => {
+                                return (
+                                    <p className='details-custom__moves-list-name'>{move}</p>
+                                )
+                            })}
+                        </div>
+                        <button className='details-custom__moves-clear' onClick={() => {clearMoves()}} ></button>
+                    </div>
+                </div>
+                <div className='details-stats'>
+                    <h3 className='details-stats__title'>Stats</h3>
+                    <Radar data = {data} options={options} />
+                </div>
+            </div>
             
-            <div className='details-details'>
-                <img className='details-details__sprite' src={currentPokemon.sprite} alt="" />
-                <h1 className='details-details__name'>{currentPokemon.name}</h1>
-                <div className='details-details-type'>
-                    <h3 className='details-details__text'>{currentPokemon.type1}</h3>
-                    <h3 className='details-details__text'>{currentPokemon.type2}</h3>
-                </div>
-                <div className='details-details-type'>
-                    <h3 className='details-details__text'>{currentPokemon.ability1}</h3>
-                    <h3 className='details-details__text'>{currentPokemon.ability2}</h3>
-                </div>
-                <div className='details-custom__moves'>
-                    {customMoveList.map((move) => {
-                        return (
-                            <p>{move}</p>
-                        )
-                    })}
-                </div>
-            </div>
-
-            <div className='details-stats'>
-                <Radar data = {data} options={options} />
-            </div>
             <div className='details-moves'>
                 <h2 className='details-moves__title'>Move List</h2>
                 {pokemonMoveList.map((move) => {
