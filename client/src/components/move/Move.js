@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useState} from 'react';
 
 
-function Move({name}) {
+function Move({name, addMove}) {
     const [moveInfo, setMoveInfo] = useState(null)
 
     const [isOpen, setIsOpen] = useState(false)    // console.log(newName)
@@ -23,7 +23,7 @@ function Move({name}) {
                 <p className='move-title__text'>{name}</p>
                 <div className='move-title__buttons'>
                     <button className='move-title__info' onClick={() => {displayInfo(name)}}>See Move Info</button>
-                    <button className='move-title__add'>Add Move</button>
+                    <button className='move-title__add' onClick={() => {addMove(name)}}>Add Move</button>
                 </div>
                
             </div>

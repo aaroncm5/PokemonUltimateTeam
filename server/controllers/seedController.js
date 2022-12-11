@@ -63,33 +63,33 @@ exports.getAllMoves = (req, res) => {
     }))
 }
 
-// exports.getDefaultInfo = (req, res) => {
-//     axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.id}/`)
-//     .then((data) => {
+exports.getDefaultInfo = (req, res) => {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.id}/`)
+    .then((data) => {
 
-//         pokemon = {
-//             id: data.data.id,
-//             name: data.data.name,
-//             hp: data.data.stats[0].base_stat,
-//             attack: data.data.stats[1].base_stat,
-//             defense: data.data.stats[2].base_stat,
-//             special_attack: data.data.stats[3].base_stat,
-//             special_defense: data.data.stats[4].base_stat,
-//             speed: data.data.stats[5].base_stat,
-//             ability1: data.data.abilities[0].ability.name,
-//             ability2: data.data.abilities[1]?.ability.name,
-//             sprite: data.data.sprites.other.home.front_default,
-//             type1: data.data.types[0].type.name,
-//             type2: data.data.types[1]?.type.name,
-//             moves: [data.data.moves[0].move.url,
-//             data.data.moves[1]?.move.url,
-//             data.data.moves[2]?.move.url,
-//             data.data.moves[3]?.move.url]
-//         }
+        pokemon = {
+            id: data.data.id,
+            name: data.data.name,
+            hp: data.data.stats[0].base_stat,
+            attack: data.data.stats[1].base_stat,
+            defense: data.data.stats[2].base_stat,
+            special_attack: data.data.stats[3].base_stat,
+            special_defense: data.data.stats[4].base_stat,
+            speed: data.data.stats[5].base_stat,
+            ability1: data.data.abilities[0].ability.name,
+            ability2: data.data.abilities[1]?.ability.name,
+            sprite: data.data.sprites.other.home.front_default,
+            type1: data.data.types[0].type.name,
+            type2: data.data.types[1]?.type.name,
+            moves: [data.data.moves[0].move.url,
+            data.data.moves[1]?.move.url,
+            data.data.moves[2]?.move.url,
+            data.data.moves[3]?.move.url]
+        }
 
-//         res.json(pokemon)
-//     })
-// }
+        res.json(pokemon)
+    })
+}
 
 exports.getPokemonWithMoves = (req, res) => {
     const pokemonArray = []

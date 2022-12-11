@@ -8,7 +8,6 @@ router.route('/signup')
 
 router.route('/login')
     .post(userController.loginUser)
-    // .get(authorize, userController.currentUser);
 
 router.route('/current')
     .get(authorize, userController.currentUser);
