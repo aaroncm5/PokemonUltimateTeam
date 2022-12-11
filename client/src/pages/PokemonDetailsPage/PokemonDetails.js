@@ -9,7 +9,7 @@ import {
 
 import { Radar } from 'react-chartjs-2';
 import {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Move from '../../components/move/Move';
 
@@ -25,8 +25,19 @@ function PokemonDetails() {
     const {pokeId} = useParams();
     const [currentPokemon, setCurrentPokemon] = useState({});
     const [pokemonMoveList, setPokemonMoveList] = useState([]);
-    const [customMoveList, setCustomMoveList] =useState([]);
+    const [customMoveList, setCustomMoveList] = useState([]);
+    const [team, setTeam] = useState([])
+    const navigate = useNavigate();
 
+    // check if there is a team in local storage
+    useEffect(() => {
+        if (sessionStorage.getItem('team') !== null) {
+          const storedTeam = sessionStorage.getItem('team')
+          setTeam(JSON.parse(storedTeam))
+        }
+    }, [])
+
+    // grab all info from the database about pokemon selected from home page
     useEffect(() => {
         axios.get(`http://localhost:8080/pokemon/${pokeId}`)
         .then(res => {
@@ -38,7 +49,8 @@ function PokemonDetails() {
         })
     }, [pokeId])
 
-    const addMove = (move, type) => {
+    // add a move to pokemon move list
+    const addMove = (move) => {
         if (customMoveList.length > 3) {
             return
         }
@@ -46,11 +58,28 @@ function PokemonDetails() {
         setCustomMoveList([...customMoveList, move])
     }
 
+    // add pokemon to local storage to be displayed on home page
+    const addToTeamCustom = (id, moves) => {
+        if (team.length > 5) {
+            return;
+        }
+
+        axios.get(`http://localhost:8080/pokemon/${id}/default`)
+        .then((res) => {
+            const customPokemon = res.data[0];
+            if (moves.length) {
+                delete customPokemon.moves ;
+                customPokemon.moves = moves
+            }
+            sessionStorage.setItem("team", JSON.stringify([...team, customPokemon]))
+            navigate('/')
+        })
+    }
+
+    // clear moves from the moves array
     const clearMoves = () => {
         setCustomMoveList([]);
     };
-
-    console.log(customMoveList);
 
     // set data and data styles for radar chart
     const data= {
@@ -105,7 +134,7 @@ function PokemonDetails() {
     return (
         <section className='details'>
             <div className='details-button'>
-                <button className='details-button__add'>+</button>
+                <button onClick={() => {addToTeamCustom(currentPokemon.id, customMoveList)}} className='details-button__add'>+</button>
             </div>
             
             <div className='pokemon-info-container'>

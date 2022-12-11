@@ -23,6 +23,14 @@ function HomePage() {
   const [teamSpDef, setTeamSpDef] = useState(0);
   const [teamSpd, setTeamSpd] = useState(0);
 
+  useEffect(() => {
+    if (sessionStorage.getItem('team') !== null) {
+      const storedTeam = sessionStorage.getItem('team')
+      setTeam(JSON.parse(storedTeam))
+    }
+  }, [])
+  
+
   const addToTeamDefault = (id) => {
     if (team.length > 5) {
       return;
@@ -30,11 +38,13 @@ function HomePage() {
 
     axios.get(`http://localhost:8080/pokemon/${id}/default`).then((res) => {
       setTeam([...team, res.data[0]]);
+      sessionStorage.setItem("team", JSON.stringify([...team, res.data[0]]))
     });
   };
 
   const clearTeam = () => {
     setTeam([]);
+    sessionStorage.removeItem('team')
   };
 
   useEffect(() => {
