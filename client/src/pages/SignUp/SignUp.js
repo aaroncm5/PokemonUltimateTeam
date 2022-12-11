@@ -1,25 +1,38 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {useFormik} from 'formik';
+import {useState} from 'react';
 import * as yup from 'yup';
 import './SignUp.scss';
+import axios from "axios";
 
 function SignUpForm() {
+    const [fail, setFail] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const onSubmit = (values, actions) => {
         console.log('submitted')
         const user = {
-            name: values.name,
-            email: values.email,
-            password: values.password
+            user_name: values.name,
+            user_username: values.userName,
+            user_email: values.email,
+            user_password: values.password
         }
 
-        console.log(user)
-
-        actions.resetForm();
+        axios.post('http://localhost:8080/users/signup', user)
+        .then((res) => {
+            setSuccess(true);
+            setFail("");
+            actions.resetForm();
+        })
+        .catch((error) => {
+            setSuccess(false);
+            setFail(error.response.data);
+        });
     }
 
     const basicSchema = yup.object().shape({
         name: yup.string().required('Required'),
+        userName: yup.string().required('Required'),
         email: yup.string().email('Please enter valid email').required('Required'),
         password: yup.string().min(5).matches().required('Required'),
         confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'passwords must match').required('Required')
@@ -29,6 +42,7 @@ function SignUpForm() {
     const {values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit} = useFormik({
         initialValues: {
             name: '',
+            userName: '',
             email: '',
             password: '',
             confirmPassword: ''
@@ -44,10 +58,6 @@ function SignUpForm() {
     return (
       <div className="formContainer">
 
-        
-
-        
-
             <form onSubmit={handleSubmit} className="userForm">
 
                 <div className="formContainer-toggle">
@@ -60,19 +70,35 @@ function SignUpForm() {
                 </div>
                 <div className="userForm-section">
                     <label className="userForm-section__label">
-                    Full Name
+                    Name
                     </label>
                     <input
                     type="text"
                     id="name"
                     className={errors.name && touched.name ? "input-error" :"userForm-section__input"}
-                    placeholder="Enter your full name"
+                    placeholder="Enter your name"
                     name="name"
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     />
                     {errors.name && touched.name && <p className="error">{errors.name}</p>}
+                </div>
+                <div className="userForm-section">
+                    <label className="userForm-section__label">
+                    UserName
+                    </label>
+                    <input
+                    type="text"
+                    id="userName"
+                    className={errors.userName && touched.userName ? "input-error" :"userForm-section__input"}
+                    placeholder="Enter your User name"
+                    name="userName"
+                    value={values.userName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    />
+                    {errors.userName && touched.userName && <p className="error">{errors.userName}</p>}
                 </div>
                 <div className="userForm-section">
                     <label className="userForm-section__label">
