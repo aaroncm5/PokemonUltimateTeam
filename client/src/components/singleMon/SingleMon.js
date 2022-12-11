@@ -13,7 +13,7 @@ function SingleMon( {ability1, ability2, attack, defense, special_attack, specia
             
             <div className='pokemon-button'>
                 <button onClick={() => {addMon(id)}} className="pokemon-button__add">Add</button>
-                <Link to={`/details/${id}`}>
+                <Link className='details__link' to={`/details/${id}`}>
                     <button className="pokemon-button__details">Details</button>
                 </Link>
                 

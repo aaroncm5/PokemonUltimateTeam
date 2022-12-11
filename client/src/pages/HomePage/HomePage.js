@@ -89,9 +89,6 @@ function HomePage() {
       {
         label: "Team Stats",
         data: [teamHp, teamAtk, teamSpAtk, teamSpd, teamSpDef, teamDef],
-        // backgroundColor: 'black',
-        // borderColor: 'white',
-
         backgroundColor: "white",
         borderColor: "rgb(255, 99, 132)",
         pointBackgroundColor: "rgb(255, 99, 132)",
@@ -182,15 +179,15 @@ function HomePage() {
               );
             })}
           </div>
-          <button type="submit" className="create__save">
-            Save Team
-          </button>
-          <button className="create__clear" onClick={() => clearTeam()}>
-            Clear
-          </button>
+          <div className="create-button">
+            <button type="submit" className="create-button__save">Save</button>
+            <button className="create-button__clear" onClick={() => clearTeam()}></button>
+          </div>
+          
         </form>
 
         <div className="team-stats">
+          <h2 className="team-stats__title">Team Stats</h2>
           <Radar data={data} options={options} />
         </div>
       </div>

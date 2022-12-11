@@ -3,20 +3,20 @@
 
 
 .member-container {
-    height: 3rem;
+    height: 5rem;
+    width: 20rem;
     display: flex;
-    justify-content: space-between;
-    width: 50%;
-    // margin: 0.5rem 1rem;
+    justify-content: flex-start;
     border: 1px solid white;
     border-radius: 10px;
-    background-color: darkgray;
+    background-color: $blue;
+    margin: 0.5rem;
 
     @include tablet {
         flex-direction: column;
-        justify-content: space-around;
-        height: 10rem;
-        width: 16%;
+        justify-content: center;
+        height: 13rem;
+        width: 7rem;
     }
     
 }
@@ -28,20 +28,71 @@
 
     @include tablet {
         flex-direction: column;
-        height: 60%;
+        height: 40%;
     }
 
     &__image{
         height:100%;
     }
 
+    
+}
+
+.member-basic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+
     &__name {
         padding-left: 0.5rem;
         text-transform: capitalize;
+        font-size: 1rem;
+        margin: 0;
+        color: $white;
+
         @include tablet {
             padding: 0;
             margin: 0;
         }
 
+    }
+
+    &__type {
+
+        display: flex;
+        justify-content: center;
+
+        @include tablet {
+            gap: 0.5rem;
+        }
+
+        &-text {
+            margin: 0;
+            padding-left: 0.5rem;
+
+            @include tablet {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.member-moves {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+
+    @include tablet {
+        align-items: center;
+        padding: 0;
+    }
+
+    &__text {
+        font-size: 0.75rem;
+        margin: 0;
+        color: $white;
     }
 }
