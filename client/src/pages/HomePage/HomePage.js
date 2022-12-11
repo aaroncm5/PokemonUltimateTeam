@@ -58,7 +58,7 @@ function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [team.length]);
 
-  console.log(team);
+//   console.log(team);
 
   const [pokeList, setPokeList] = useState([]);
   useEffect(
