@@ -23,8 +23,9 @@ ChartJS.register(
 
 function PokemonDetails() {
     const {pokeId} = useParams();
-    const [currentPokemon, setCurrentPokemon] = useState({})
-    const [pokemonMoveList, setPokemonMoveList] = useState([])
+    const [currentPokemon, setCurrentPokemon] = useState({});
+    const [pokemonMoveList, setPokemonMoveList] = useState([]);
+    const [customMoveList, setCustomMoveList] =useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/pokemon/${pokeId}`)
@@ -37,20 +38,19 @@ function PokemonDetails() {
         })
     }, [pokeId])
 
-    // console.log(currentPokemon)
-    
+    const addMove = (move) => {
+        if (customMoveList.length > 3) {
+            return
+        }
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8080/pokemon/${pokeId}/moves`)
-    //     .then(res => {
-    //         setPokemonMoveList(res.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     })
-    // }, [pokeId])
+        setCustomMoveList([...customMoveList, move])
+    }
 
-    // console.log(pokemonMoveList)
+    const clearMoves = () => {
+        setCustomMoveList([]);
+    };
+
+    console.log(customMoveList);
 
     // set data and data styles for radar chart
     const data= {
@@ -104,7 +104,12 @@ function PokemonDetails() {
 
     return (
         <section className='details'>
-            <button>ADD TO TEAM</button>
+            <div className='details-button'>
+                <button className='details-button__add'>ADD TO TEAM</button>
+                <button onClick={() => {clearMoves()}} className='details-button__clear'>Clear Moves</button>
+            </div>
+            
+            
             <div className='details-details'>
                 <img className='details-details__sprite' src={currentPokemon.sprite} alt="" />
                 <h1 className='details-details__name'>{currentPokemon.name}</h1>
@@ -116,17 +121,23 @@ function PokemonDetails() {
                     <h3 className='details-details__text'>{currentPokemon.ability1}</h3>
                     <h3 className='details-details__text'>{currentPokemon.ability2}</h3>
                 </div>
+                <div className='details-custom__moves'>
+                    {customMoveList.map((move) => {
+                        return (
+                            <p>{move}</p>
+                        )
+                    })}
+                </div>
             </div>
+
             <div className='details-stats'>
                 <Radar data = {data} options={options} />
             </div>
-            <div>
-                <h2>Move List</h2>
+            <div className='details-moves'>
+                <h2 className='details-moves__title'>Move List</h2>
                 {pokemonMoveList.map((move) => {
-                    
-
                     return(
-                        <Move name={move} key={move}/>
+                        <Move addMove={addMove} name={move} key={move}/>
                     )
                 })}
             </div>

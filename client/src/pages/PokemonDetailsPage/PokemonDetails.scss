@@ -9,6 +9,17 @@
     align-items: center;
     background-color: #222426;
 
+    &-button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &__add {
+            border: none;
+            background-image: url(../../assets/icons/great.png);
+        }
+    }
+
     &-details {
         width: 100%;
         display: flex;
