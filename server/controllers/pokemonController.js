@@ -59,9 +59,26 @@ exports.getDefaultPokemon =(req, res) => {
     );
 }
 
-exports.postTeam = (req, res) => {
+exports.postTeam = async (req, res) => {
 
-    console.req.body
+    const team ={
+        id: req.body.id,
+        user_id: req.body.user_id,
+        team_name: req.body.team_name
+    }
 
-    knex('teams')
+    const pokemon = req.body.team_members
+
+    try {
+        await knex('teams').insert(team)
+        await knex('pokemon').insert(pokemon)
+        res.status(201).json(pokemon)
+    }catch(error) {
+        res.status(400).send('error making team')
+    }  
+}
+
+
+exports.getAllUserTeams = (req, res) => {
+    
 }

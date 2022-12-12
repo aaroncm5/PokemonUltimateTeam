@@ -2,6 +2,7 @@ import "./HomePage.scss";
 import SingleMon from "../../components/singleMon/SingleMon";
 import TeamMember from "../../components/teamMember/TeamMember";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from "react";
 import { Radar } from "react-chartjs-2";
 import {
@@ -14,7 +15,7 @@ import {
 
 ChartJS.register(LineElement, PointElement, Tooltip, RadialLinearScale);
 
-function HomePage() {
+function HomePage({isLoggedIn}) {
   const [team, setTeam] = useState([]);
   const [teamHp, setTeamHp] = useState(0);
   const [teamAtk, setTeamAtk] = useState(0);
@@ -141,8 +142,36 @@ function HomePage() {
   // store a team in the database
   const handleSubmit = (event) => {
     event.preventDefault();
-    team.teamName = event.target.teamName.value;
-    console.log(team);
+    if (isLoggedIn === false) {
+      console.log('please log in')
+      return
+    }
+    const myTeam = {
+      user_id: sessionStorage.getItem('userId'),
+      id: uuidv4(),
+      team_name: event.target.teamName.value,
+      team_members: [...team]
+    }
+
+    for (let i=0; i<myTeam.team_members.length; i++) {
+      myTeam.team_members[i].team_id = myTeam.id;
+      delete myTeam.team_members[i].id;
+      myTeam.team_members[i].id=uuidv4();
+      myTeam.team_members[i].move1=myTeam.team_members[i].moves[0]
+      myTeam.team_members[i].move2=myTeam.team_members[i].moves[1]
+      myTeam.team_members[i].move3=myTeam.team_members[i].moves[2]
+      myTeam.team_members[i].move4=myTeam.team_members[i].moves[3]
+      delete myTeam.team_members[i].moves;
+    }
+
+    axios.post('http://localhost:8080/pokemon/team', myTeam)
+    .then(()=>{
+      sessionStorage.removeItem('team')
+      setTeam([]);
+      event.target.reset()
+
+    })
+
   };
 
   return (

@@ -20,7 +20,7 @@ function Login( {setIsLoggedIn} ) {
             sessionStorage.setItem("token", res.data.token)
             console.log(res.data)
             setIsLoggedIn(true)
-            // navigate('/')
+            navigate('/dashboard')
             actions.resetForm();
             
         })
