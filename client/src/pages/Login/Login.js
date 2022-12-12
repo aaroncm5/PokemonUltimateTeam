@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import './Login.scss';
 import axios from "axios";
 
-function Login() {
+function Login( {setIsLoggedIn} ) {
     const [fail, setFail] = useState(false);
     const navigate = useNavigate();
 
@@ -18,13 +18,18 @@ function Login() {
         axios.post('http://localhost:8080/users/login', user)
         .then((res) => {
             sessionStorage.setItem("token", res.data.token)
-            navigate('/')
+            console.log(res.data)
+            setIsLoggedIn(true)
+            navigate('/dashboard')
             actions.resetForm();
+            
         })
         .catch((err) => {
             console.log(err);
             setFail(true);
         })
+
+
 
         
     }

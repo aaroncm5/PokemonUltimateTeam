@@ -1,8 +1,8 @@
 exports.up = function(knex) {
     return knex.schema.createTable('pokemon', (table) => {
-        table.uuid('id').primary();
+        table.string('id').primary();
         table
-            .uuid('team_id')
+            .string('team_id')
             .references('teams.id')
             .onUpdate('CASCADE')
             .onDelete('CASCADE')
@@ -18,10 +18,10 @@ exports.up = function(knex) {
         table.integer('speed').notNullable();
         table.string('ability1').notNullable();
         table.string('ability2');
-        table.integer('move1').notNullable();
-        table.integer('move2');
-        table.integer('move3');
-        table.integer('move4');
+        table.string('move1').notNullable();
+        table.string('move2');
+        table.string('move3');
+        table.string('move4');
         table.timestamps(true, true);
       })
 };

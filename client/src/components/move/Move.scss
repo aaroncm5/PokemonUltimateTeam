@@ -1,28 +1,118 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
 
 .display{
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
 
 .hide{
     display:none
 } 
 
+.effect-container {
+
+    display: flex;
+
+    @include tablet {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
 .move-container {
     display: flex;
     flex-direction: column;
+    margin: 0.25rem 0;
+    border: 1px solid $white;
+    padding: 0.25rem;
+    border-radius: 25px;
+
+    &-info {
+        display: flex;
+
+        @include tablet {
+            justify-content: flex-start;
+            // flex-direction: row;
+            // flex-wrap: wrap;
+            width: 20%;
+            
+        }
+        
+
+        &__title {
+            margin: 0.25rem 0;
+            padding-left: 1rem;
+            width: 10rem;
+            color: lightgray;
+
+            @include tablet {
+                width: min-content;
+                padding-right: 1rem;
+            }
+        }
+
+        &__text {
+            width: 75%;
+            margin: 0.25rem 0;
+            text-align: left;
+            color: $white;
+
+            @include tablet {
+                // width: fit-content;
+            }
+        }
+
+        &__type {
+            margin: 0.25rem 0;
+            width: 75%;
+            margin: 0.25rem 0;
+            text-align: left;
+        }
+    }
+
+    
+
 }
 
 .move-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-left: 1rem;
+
 
     &__buttons {
         display: flex;
         
     }
 
+    &__info {
+        background-image: url('../../assets/icons/moreInfo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: none;
+        background-color: transparent;
+    }
+
+    &__add {
+        margin-left: 1rem;
+        background-color: $darkYellow;
+        border: none;
+        border-radius: 25px;
+
+    }
+
     &__text{
         margin: 0;
+        text-transform: capitalize;
     }
 }

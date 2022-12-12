@@ -22,18 +22,37 @@ function Move({name, addMove}) {
             <div className='move-title'>
                 <p className='move-title__text'>{name}</p>
                 <div className='move-title__buttons'>
-                    <button className='move-title__info' onClick={() => {displayInfo(name)}}>See Move Info</button>
+                    <button className='move-title__info' onClick={() => {displayInfo(name)}}></button>
                     <button className='move-title__add' onClick={() => {addMove(name)}}>Add Move</button>
                 </div>
                
             </div>
 
             <div className={`${isOpen? 'display': 'hide'}`}>
-                <p>power: {moveInfo?.power}</p>
-                <p>effect: {moveInfo?.effect}</p>
-                <p>accuracy: {moveInfo?.accuracy}</p>
-                <p>pp: {moveInfo?.power_points}</p>
-                <p>priority: {moveInfo?.priority}</p>
+                <div className='move-container-info'>
+                    <p className='move-container-info__title'>Power:</p>
+                    <p className='move-container-info__text'>{moveInfo?.power}</p>
+                </div>
+                <div className='move-container-info'>
+                    <p className='move-container-info__title'>Type:</p>
+                    <p className={`move-container-info__type ${moveInfo?.type}`}>{moveInfo?.type}</p>
+                </div>
+                <div className='move-container-info'>
+                    <p className='move-container-info__title'>Accuracy:</p>
+                    <p className='move-container-info__text'>{moveInfo?.accuracy}</p>
+                </div>
+                <div className='move-container-info'>
+                    <p className='move-container-info__title'>Power Points:</p>
+                    <p className='move-container-info__text'>{moveInfo?.power_points}</p>
+                </div>
+                <div className='move-container-info'>
+                    <p className='move-container-info__title'>Priority:</p>
+                    <p className='move-container-info__text'>{moveInfo?.priority}</p>
+                </div>
+                 <div className='effect-container'>
+                    <p className='move-container-info__title'>Effect:</p>
+                    <p className='move-container-info__text'>{moveInfo?.effect}</p>
+                </div>
             </div>
         </section>
     )
