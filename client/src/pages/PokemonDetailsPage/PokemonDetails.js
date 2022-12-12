@@ -4,7 +4,8 @@ import {
     LineElement,
     PointElement,
     Tooltip,
-    RadialLinearScale
+    RadialLinearScale,
+    Filler
 } from 'chart.js';
 
 import { Radar } from 'react-chartjs-2';
@@ -17,7 +18,8 @@ ChartJS.register(
     LineElement,
     PointElement,
     Tooltip,
-    RadialLinearScale
+    RadialLinearScale,
+    Filler
 )
 
 

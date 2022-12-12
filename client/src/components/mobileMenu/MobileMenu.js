@@ -16,7 +16,8 @@ function MobileMenu( {show, onClose} ) {
             </div>
             <ul className='mobile-nav-list'>
                 <Link className='mobile-nav-list__item' to='/'>Home</Link>
-                <Link className='mobile-nav-list__item' to='/'>Login/Signup</Link>
+                <Link className='mobile-nav-list__item' to='/login'>Login/Signup</Link>
+                <Link className='mobile-nav-list__item' to='/dashboard'>DashBoard</Link>
                 <Link className='mobile-nav-list__item' to='/'>Community</Link>
                 <Link className='mobile-nav-list__item' to='/'>FAQ</Link>
             </ul>

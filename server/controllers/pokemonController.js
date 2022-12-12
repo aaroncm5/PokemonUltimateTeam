@@ -4,6 +4,11 @@ const { json } = require('express');
 const express = require('express');
 const {uuid} = require('uuidv4');
 
+const filterByTeam = (container, array, id) => {
+    container.push(array.filter(id = team))
+
+}
+
 exports.getAllPokemon = (req, res) => {
     knex('pokemonList')
     .select('*')
@@ -76,9 +81,4 @@ exports.postTeam = async (req, res) => {
     }catch(error) {
         res.status(400).send('error making team')
     }  
-}
-
-
-exports.getAllUserTeams = (req, res) => {
-    
 }

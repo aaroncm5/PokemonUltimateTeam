@@ -2,6 +2,10 @@ const router = require('express').Router();
 const pokemonController = require('../controllers/pokemonController');
 const authorize = require('../middleware/authorize');
 
+
+router.route('/team')
+    .post(pokemonController.postTeam);
+
 router.route('/all')
     .get(pokemonController.getAllPokemon);
 
@@ -14,11 +18,5 @@ router.route('/:id/default')
 router.route('/move/:name')
     .get(pokemonController.moveDetails);
 
-router.route('/team')
-    .post(pokemonController.postTeam);
-
-
-
-
-
+    
 module.exports = router;

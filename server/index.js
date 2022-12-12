@@ -12,11 +12,11 @@ app.use(cors());
 
 const userRoute = require('./routes/userRoutes');
 const pokemonRoute = require('./routes/pokemonRoutes');
-const moveRoute = require('./routes/movesRoutes')
+const teamRoute = require('./routes/teamRoutes')
 
 app.use('/users', userRoute);
 app.use('/pokemon', pokemonRoute);
-app.use('/moves', moveRoute)
+app.use('/team', teamRoute)
 
 app.listen(PORT, () => {
     console.log(`we're live ${PORT}`);

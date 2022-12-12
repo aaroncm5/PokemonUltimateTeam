@@ -6,6 +6,11 @@ exports.up = function(knex) {
             .references('teams.id')
             .onUpdate('CASCADE')
             .onDelete('CASCADE')
+        table
+            .string('user_id')
+            .references('users.id')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
         table.string('name').notNullable();
         table.string('type1').notNullable();
         table.string('type2');
