@@ -23,6 +23,7 @@ function HomePage() {
   const [teamSpDef, setTeamSpDef] = useState(0);
   const [teamSpd, setTeamSpd] = useState(0);
 
+  // check local storage if a team is store, if so then set current team to that teams
   useEffect(() => {
     if (sessionStorage.getItem('team') !== null) {
       const storedTeam = sessionStorage.getItem('team')
@@ -30,7 +31,7 @@ function HomePage() {
     }
   }, [])
   
-
+  // add a pokemon to the team with random moves and store it in browser
   const addToTeamDefault = (id) => {
     if (team.length > 5) {
       return;
@@ -42,11 +43,13 @@ function HomePage() {
     });
   };
 
+  // clear the current team from screen and storage
   const clearTeam = () => {
     setTeam([]);
     sessionStorage.removeItem('team')
   };
 
+  // set up team stats to constantly update as pokemon are added for the stats chart
   useEffect(() => {
     const teamStats = [0, 0, 0, 0, 0, 0];
     for (let i = 0; i < team.length; i++) {
@@ -68,8 +71,7 @@ function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [team.length]);
 
-//   console.log(team);
-
+  // get list of all pokemon from database
   const [pokeList, setPokeList] = useState([]);
   useEffect(
     () => {
@@ -136,6 +138,7 @@ function HomePage() {
     },
   };
 
+  // store a team in the database
   const handleSubmit = (event) => {
     event.preventDefault();
     team.teamName = event.target.teamName.value;
