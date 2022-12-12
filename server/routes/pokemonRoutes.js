@@ -18,8 +18,5 @@ router.route('/:id/default')
 router.route('/move/:name')
     .get(pokemonController.moveDetails);
 
-router.route('/userTeam/:teamId')
-    .get(pokemonController.getUserTeam)
-
     
 module.exports = router;

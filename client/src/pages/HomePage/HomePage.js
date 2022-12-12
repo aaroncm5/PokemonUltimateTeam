@@ -155,6 +155,7 @@ function HomePage({isLoggedIn}) {
 
     for (let i=0; i<myTeam.team_members.length; i++) {
       myTeam.team_members[i].team_id = myTeam.id;
+      myTeam.team_members[i].user_id = myTeam.user_id;
       delete myTeam.team_members[i].id;
       myTeam.team_members[i].id=uuidv4();
       myTeam.team_members[i].move1=myTeam.team_members[i].moves[0]
