@@ -77,8 +77,18 @@ exports.postTeam = async (req, res) => {
         res.status(400).send('error making team')
     }  
 }
-
-
-exports.getAllUserTeams = (req, res) => {
-    
+exports.getUserTeam = (req, res) => {
+    console.log(req.body)
+    knex('teams')
+    .join('pokemon', 'teams.id', '=', 'pokemon.team_id')
+    .select('*')
+    .from('pokemon')
+    .where({user_id: req.params.teamId})
+    .then((data) => {
+        res.status(200).json(data)
+        console.log(data)
+    })
+    .catch((err) => 
+        res.status(400).send(err)
+    );
 }
