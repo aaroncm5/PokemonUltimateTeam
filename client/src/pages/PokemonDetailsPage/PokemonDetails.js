@@ -115,8 +115,11 @@ function PokemonDetails() {
                     display: true,
                     color: 'white'
                 },
-                pointedLabels: {
-                    backdropColor: 'white'	
+                pointLabels: {
+                    font: {
+                        size: 15,
+                        color: '#FFFFFFF'
+                    }
                 },
                 grid: {
                     color: 'white'

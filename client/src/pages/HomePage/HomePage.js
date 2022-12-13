@@ -102,7 +102,8 @@ function HomePage({isLoggedIn}) {
       {
         label: "Team Stats",
         data: [teamHp, teamAtk, teamSpAtk, teamSpd, teamSpDef, teamDef],
-        backgroundColor: "white",
+        datalabels:{color: 'white'},
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgb(255, 99, 132)",
         pointBackgroundColor: "rgb(255, 99, 132)",
         pointBorderColor: "#fff",
@@ -120,8 +121,11 @@ function HomePage({isLoggedIn}) {
           display: true,
           color: "white",
         },
-        pointedLabels: {
-          backdropColor: "white",
+        pointLabels: {
+          font: {
+            size: 15,
+            color: '#FFFFFFF'
+          }
         },
         grid: {
           color: "white",
@@ -146,8 +150,6 @@ function HomePage({isLoggedIn}) {
       console.log('please log in')
       return
     }
-
-    
   
     const myTeam = {
       user_id: sessionStorage.getItem('userId'),
@@ -178,7 +180,6 @@ function HomePage({isLoggedIn}) {
       sessionStorage.removeItem('team')
       setTeam([]);
       event.target.reset()
-
     })
 
   };

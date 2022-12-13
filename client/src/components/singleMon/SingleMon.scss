@@ -11,6 +11,16 @@
     border-radius: 10px;
     background-color: $blue;
 
+    box-shadow:
+        20.6px 25.1px 52.2px rgba(0, 0, 0, 0.041),
+        35.1px 42.8px 64.4px rgba(0, 0, 0, 0.042),
+        44.1px 53.8px 65.8px rgba(0, 0, 0, 0.039),
+        48.9px 59.6px 63.1px rgba(0, 0, 0, 0.036),
+        53.3px 65px 61.4px rgba(0, 0, 0, 0.041),
+        82px 100px 80px rgba(0, 0, 0, 0.07)
+    ;
+
+
     @include tablet {
         flex-direction: column;
         justify-content: space-between;
@@ -86,10 +96,13 @@
         background-color: $yellow;
         overflow: hidden;
         border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
 
         @include tablet {
             width: 100%;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px; 
         }
     }
 

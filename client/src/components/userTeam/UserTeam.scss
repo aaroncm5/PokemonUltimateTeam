@@ -17,9 +17,9 @@
         margin-top: 2rem;
 
         @include tablet {
-            justify-content: flex-start;
+            justify-content: space-between;
             width: 47rem;
-            padding-left: 0;
+            padding: 0;
         }
 
         &__name {

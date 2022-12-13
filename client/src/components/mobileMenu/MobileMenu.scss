@@ -1,21 +1,61 @@
 @use '../../styles/fonts' as *;
 @use '../../styles/mixins' as *;
 
+@-webkit-keyframes scale-in-tr {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+      opacity: 1;
+    }
+  }
+  @keyframes scale-in-tr {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+      opacity: 1;
+    }
+}
+  
+
 .mobile-nav{
     display: flex;
     flex-direction: column;
     z-index: 69;
     position: absolute;
-    background-color: red;
-    top: 1%;
-    right: 1%;
+    top: 2%;
+    right: 2%;
+    height: 15rem;
+    width: 10rem;
+    padding: 0 0.5rem;
+    background: rgba( 255, 0, 0, 0.55 );
+    backdrop-filter: blur( 7px );
+    -webkit-backdrop-filter: blur( 7px );
     border-radius: 10px;
-    // background: rgba( 255, 0, 0, 0.45 );
-    // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    // backdrop-filter: blur( 13px );
-    // -webkit-backdrop-filter: blur( 13px );
-    // border-radius: 10px;
-    // border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    -webkit-animation: scale-in-tr 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: scale-in-tr 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    
+
+    
 
     @include tablet {
         display: none
@@ -28,6 +68,13 @@
 
         &-text {
             margin: 0;
+            font-size: 1.5rem;
+            color: $white;
+        }
+
+        &-image {
+            height: 1.5rem;
+            padding-top: 0.5rem;
         }
     }
 
@@ -40,6 +87,9 @@
         &__item{
             text-decoration: none;
             color: white;
+            font-size: 1.25rem;
+            padding: 0.25rem 0;
+            
         }
     }
 

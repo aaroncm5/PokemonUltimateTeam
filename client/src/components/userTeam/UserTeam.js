@@ -3,15 +3,15 @@ import axios from 'axios';
 import './UserTeam.scss';
 import UserTeamPokemon from '../../components/userTeamPokemon/UserTeamPokemon'
 
-function UserTeam( {props} ) {
+function UserTeam( {props, deleteTeam} ) {
 
-    // console.log(props[0].team_id)
     const [teamName, setTeamName] = useState([])
 
     useEffect(() => {
         axios(`http://localhost:8080/team/${props[0].team_id}`)
         .then((res) => {
             setTeamName(res.data);
+            // console.log(res.data)
         })
         .catch((error) => {
             console.log(error);
@@ -19,7 +19,6 @@ function UserTeam( {props} ) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    console.log(teamName)
 
     if (teamName.length < 1) {
         return <div>loading</div>;
@@ -31,7 +30,7 @@ function UserTeam( {props} ) {
         <section className='teamcard'>
             <div className='teamcard-title'>
                 <h1 className='teamcard-title__name'>{teamName[0].team_name}</h1>
-                <button className='teamcard-title__delete'>Release Team: {teamName[0].team_name} </button>
+                <button className='teamcard-title__delete' onClick={() => {deleteTeam(teamName[0].id)}}>Release Team: {teamName[0].team_name} </button>
             </div>
             
             <div className='teamcard-container'>

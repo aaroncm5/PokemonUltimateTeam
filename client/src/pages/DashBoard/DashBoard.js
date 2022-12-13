@@ -36,6 +36,20 @@ function Dashboard() {
         });
     }, []);
 
+    const deleteTeam = (id) => {
+        axios.delete(`http://localhost:8080/team/${id}`)
+        .then(() => {
+            const userId = sessionStorage.getItem('userId')
+            return axios.get(`http://localhost:8080/user/${userId}`)
+        })
+        .then ((res) => {
+            setUserTeams(res.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
 
 
     const handleLogout = () => {
@@ -83,7 +97,7 @@ function Dashboard() {
 
                     return(
                         <div>
-                            <UserTeam props={team}/>
+                            <UserTeam props={team} deleteTeam={deleteTeam}/>
                         </div>
                     )
                 })}
