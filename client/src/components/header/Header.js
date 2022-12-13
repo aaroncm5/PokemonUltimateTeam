@@ -34,7 +34,6 @@ function Header() {
                     <NavLink className='nav-list__item' to='/'>Home</NavLink>
                     <NavLink className='nav-list__item' to='/login'>Login</NavLink>
                     <NavLink className='nav-list__item' to='/dashboard'>Dashboard</NavLink>
-                    <NavLink className='nav-list__item' to='/community'>Community</NavLink>
                     <NavLink className='nav-list__item' to='/faq'>FAQ</NavLink>
                 </ul>
             </nav>

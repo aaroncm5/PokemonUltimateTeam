@@ -61,7 +61,6 @@ exports.getUserTeam = (req, res) => {
 }
 
 exports.getTeamName = (req, res) => {
-    console.log(req.params.teamId)
     knex('teams')
     .where({id: req.params.teamId})
     .select('*')

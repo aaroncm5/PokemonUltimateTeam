@@ -146,11 +146,19 @@ function HomePage({isLoggedIn}) {
       console.log('please log in')
       return
     }
+
+    
+  
     const myTeam = {
       user_id: sessionStorage.getItem('userId'),
       id: uuidv4(),
       team_name: event.target.teamName.value,
       team_members: [...team]
+    }
+
+    if (myTeam.team_name.length <1) {
+      alert('please add a team name')
+      return
     }
 
     for (let i=0; i<myTeam.team_members.length; i++) {
