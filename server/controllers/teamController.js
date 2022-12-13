@@ -71,3 +71,13 @@ exports.getTeamName = (req, res) => {
         res.status(400).send(err)
     );
 }
+
+exports.deleteTeam = (req, res) => {
+    knex('teams')
+    .delete()
+    .where({id: req.params.teamId})
+    .then (() => {
+        res.status(204).send('team has been deleted');
+    })
+    
+}
