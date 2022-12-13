@@ -7,7 +7,7 @@ import PokemonDetails from './pages/PokemonDetailsPage/PokemonDetails';
 import SignUp from './pages/SignUp/SignUp'
 import Login from './pages/Login/Login';
 import Dashboard from './pages/DashBoard/DashBoard';
-
+import About from './pages/AboutPage/About'
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
 
@@ -20,6 +20,7 @@ function App() {
         <Route path='/login' element={<Login setIsLoggedIn = {setIsLoggedIn}/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/details/:pokeId' element={<PokemonDetails/>}/>
+        <Route path='/about' element={<About/>}/>
       </Routes>
       
     

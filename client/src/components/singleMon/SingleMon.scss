@@ -83,6 +83,10 @@
         border-right: 1px solid $blue;
         width: 3rem;
 
+        &:hover {
+            opacity: 0.50;
+        }
+
         @include tablet {
             width: 100%;
             border-bottom: 1px solid $blue;
@@ -97,6 +101,10 @@
         overflow: hidden;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
+
+        &:hover {
+            opacity: 0.50;
+        }
 
         @include tablet {
             width: 100%;
