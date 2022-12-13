@@ -61,7 +61,6 @@ exports.getUserTeam = (req, res) => {
 }
 
 exports.getTeamName = (req, res) => {
-    console.log(req.params.teamId)
     knex('teams')
     .where({id: req.params.teamId})
     .select('*')
@@ -71,4 +70,14 @@ exports.getTeamName = (req, res) => {
     .catch((err) => 
         res.status(400).send(err)
     );
+}
+
+exports.deleteTeam = (req, res) => {
+    knex('teams')
+    .delete()
+    .where({id: req.params.teamId})
+    .then (() => {
+        res.status(204).send('team has been deleted');
+    })
+    
 }

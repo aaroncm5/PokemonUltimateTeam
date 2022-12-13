@@ -51,10 +51,6 @@ function SignUpForm() {
         onSubmit,
     });
 
-    console.log(errors)
-
-    console.log(values.confirmPassword);
-
     return (
       <div className="formContainer">
 
@@ -142,7 +138,6 @@ function SignUpForm() {
                     id="confirmPassword"
                     className={errors.confirmPassword && touched.confirmPassword ? "input-error" :"userForm-section__input"}
                     placeholder="Confirm password"
-                    // name="confirmPassword"
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}

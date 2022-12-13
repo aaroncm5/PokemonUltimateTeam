@@ -42,7 +42,7 @@ function Move({name, addMove}) {
                     <p className='move-container-info__text'>{moveInfo?.accuracy}</p>
                 </div>
                 <div className='move-container-info'>
-                    <p className='move-container-info__title'>Power Points:</p>
+                    <p className='move-container-info__title'>PP:</p>
                     <p className='move-container-info__text'>{moveInfo?.power_points}</p>
                 </div>
                 <div className='move-container-info'>

@@ -10,7 +10,8 @@ router.route('/user/:userId')
     .get(teamController.getUserTeam);
 
 router.route('/:teamId')
-    .get(teamController.getTeamName);
+    .get(teamController.getTeamName)
+    .delete(teamController.deleteTeam);
 
 
 module.exports = router;

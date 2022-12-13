@@ -2,10 +2,12 @@ import './DashBoard.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import UserTeam from '../../components/userTeam/UserTeam'
 
 function Dashboard() {
     const [user, setUser] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
+    const [userTeams, setUserTeams] = useState([])
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -20,15 +22,34 @@ function Dashboard() {
                 Authorization: `Bearer ${token}`
             }
         })
-            .then((response) => {
-                setUser(response.data);
-                sessionStorage.setItem('userId', response.data.id)
-            })
-            .catch((error) => {
-                console.log(error);
-                setFailedAuth(true);
-            });
+        .then((response) => {
+            setUser(response.data);
+            sessionStorage.setItem('userId', response.data.id)
+            return axios.get(`http://localhost:8080/team/user/${response.data.id}`)
+        })
+        .then((res) => {
+            setUserTeams(res.data)
+        })
+        .catch((error) => {
+            console.log(error);
+            setFailedAuth(true);
+        });
     }, []);
+
+    const deleteTeam = (id) => {
+        axios.delete(`http://localhost:8080/team/${id}`)
+        .then(() => {
+            const userId = sessionStorage.getItem('userId')
+            return axios.get(`http://localhost:8080/user/${userId}`)
+        })
+        .then ((res) => {
+            setUserTeams(res.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
 
 
     const handleLogout = () => {
@@ -58,20 +79,32 @@ function Dashboard() {
 
     return (
         <main className="dashboard">
-            <h1 className="dashboard__title">
-                Dashboard
-            </h1>
+            <div className='dashboard-container'>
+                <h1 className='dashboard-container__title'>Profile</h1>
+                <div className='dashboard-container__info'>
+                    <p className='dashboard-container__info-text'>Government Name:   {user.user_name}</p>
+                    <p className='dashboard-container__info-text'>Trainer Name:   {user.user_username}</p>
+                </div>
+                
 
-            <p>Welcome back, {user.user_name}</p>
+                <button className="dashboard__button" onClick={handleLogout}>
+                    Log out
+                </button>
+            </div>
 
-            <h2>My Profile</h2>
-            <p>Email: {user.user_email}</p>
-            <p>Name: {user.user_name}</p>
-            <p>userNmae: {user.user_username}</p>
+            <section className='dashboard-teams'>
+                {userTeams.map((team) => {
 
-            <button className="dashboard__logout" onClick={handleLogout}>
-                Log out
-            </button>
+                    return(
+                        <div>
+                            <UserTeam props={team} deleteTeam={deleteTeam}/>
+                        </div>
+                    )
+                })}
+                
+
+            </section>
+            
         </main>
     );
 }
