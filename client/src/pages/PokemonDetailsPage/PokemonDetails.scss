@@ -154,6 +154,7 @@
                 text-align: center;
                 color: $white;
                 margin: 0.5rem 0;
+                text-transform: capitalize;
 
                 @include tablet {
                     width: fit-content;
