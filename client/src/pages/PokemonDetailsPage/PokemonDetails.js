@@ -24,6 +24,7 @@ ChartJS.register(
 
 
 function PokemonDetails() {
+    const apiUrl = process.env.react_app_api_url
     const {pokeId} = useParams();
     const [currentPokemon, setCurrentPokemon] = useState({});
     const [pokemonMoveList, setPokemonMoveList] = useState([]);
@@ -41,7 +42,7 @@ function PokemonDetails() {
 
     // grab all info from the database about pokemon selected from home page
     useEffect(() => {
-        axios.get(`http://localhost:8080/pokemon/${pokeId}`)
+        axios.get(`${apiUrl}/pokemon/${pokeId}`)
         .then(res => {
             setCurrentPokemon(res.data[0]);
             setPokemonMoveList(JSON.parse(res.data[0].moves))
@@ -49,6 +50,7 @@ function PokemonDetails() {
         .catch(error => {
             console.log(error)
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokeId])
 
     // add a move to pokemon move list
@@ -66,7 +68,7 @@ function PokemonDetails() {
             return;
         }
 
-        axios.get(`http://localhost:8080/pokemon/${id}/default`)
+        axios.get(`http://localhost:8080/${id}/default`)
         .then((res) => {
             const customPokemon = res.data[0];
             if (moves.length) {

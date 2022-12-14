@@ -4,7 +4,7 @@ const authorize = require('../middleware/authorize');
 
 
 router.route('/team')
-    .post(pokemonController.postTeam);
+    .post(authorize, pokemonController.postTeam);
 
 router.route('/all')
     .get(pokemonController.getAllPokemon);

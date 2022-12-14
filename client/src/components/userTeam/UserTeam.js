@@ -4,14 +4,13 @@ import './UserTeam.scss';
 import UserTeamPokemon from '../../components/userTeamPokemon/UserTeamPokemon'
 
 function UserTeam( {props, deleteTeam} ) {
-
+    const apiUrl = process.env.react_app_api_url
     const [teamName, setTeamName] = useState([])
 
     useEffect(() => {
-        axios(`http://localhost:8080/team/${props[0].team_id}`)
+        axios(`${apiUrl}/team/${props[0].team_id}`)
         .then((res) => {
             setTeamName(res.data);
-            // console.log(res.data)
         })
         .catch((error) => {
             console.log(error);
@@ -19,12 +18,9 @@ function UserTeam( {props, deleteTeam} ) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     if (teamName.length < 1) {
         return <div>loading</div>;
     }
-
-
 
     return (
         <section className='teamcard'>
@@ -35,7 +31,6 @@ function UserTeam( {props, deleteTeam} ) {
             
             <div className='teamcard-container'>
                 {props.map((member) => {
-
 
                     return (
                         

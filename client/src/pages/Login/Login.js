@@ -6,6 +6,8 @@ import './Login.scss';
 import axios from "axios";
 
 function Login( {setIsLoggedIn} ) {
+    const apiUrl = process.env.react_app_api_url
+
     const [fail, setFail] = useState(false);
     const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ function Login( {setIsLoggedIn} ) {
             user_password: values.password
         }
 
-        axios.post('http://localhost:8080/users/login', user)
+        axios.post(`${apiUrl}/users/login`, user)
         .then((res) => {
             sessionStorage.setItem("token", res.data.token)
             console.log(res.data)
@@ -27,11 +29,7 @@ function Login( {setIsLoggedIn} ) {
         .catch((err) => {
             console.log(err);
             setFail(true);
-        })
-
-
-
-        
+        })  
     }
 
     const basicSchema = yup.object().shape({
@@ -52,9 +50,6 @@ function Login( {setIsLoggedIn} ) {
 
     return (
       <div className="formContainer">
-
-        
-
         <form className="userForm" onSubmit={handleSubmit}>
                 <div className="formContainer-toggle">
                     <NavLink to="/login" activeclassname="formContainer-toggle__select-active" className="formContainer-toggle__select">
