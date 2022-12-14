@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+Pokemon Ultimate Team
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is designed to be a site that allows anyone to build a custom pokemon team of their choosing. Along with choosing any Pokemon, a custom move list can be chosen for each Pokemon with a detailed description of each move available. The main purpose of this site is that any user can open it and create a team without having to worry about logging in or signing up. However, if a user does wish to sign up they will have access to the ability to save and name any team they make and view all past teams on their dashboard.
 
-## Available Scripts
+Tech Stack
 
-In the project directory, you can run:
+Client: React, Sass, ChartJs, Formik, Yup
 
-### `npm start`
+Server: Node, Express, MySQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Installation
+client
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    cd client
+    npm install
+    npm start
 
-### `npm test`
+Create a database in MySQL and fill out .env file with relevant info
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Server
 
-### `npm run build`
+    cd server
+    npm install
+    npm run migrate
+    npm run seed
+    npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Make sure to fill out the client side .env as well with API_URL
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Screenshots
+See Screenshots folder in client side
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lessons Learned
 
-### `npm run eject`
+Throughout the course of this project I learned a lot about myself as a developer and my capabilities. I faced a couple major roadblocks throughout the development of this project with one of the more notable hurdles being my use of the third party PokemonAPI.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Initially I had looked through the PokemonAPI found that it contained all the information I wanted/needed to make this site. However it turned out that the way the API is organized I was being required to do a lot more calls to the API then anticipated. My solution to that was to build a function that would grab all the information I need once and seed a table with everything. This way I wouldn't be asking the browser to do hundreds of API calls on page load every time the homepage was mounted.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Next Steps
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Future iterations of this site will include more information displayed on the user dashboard so that each team members moves as well as move info can be viewed, as well as a layout of the overall team stats for each user team. I would also like to be able to show individual details page for each user generated team.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I would also like to add some stat calculators that would allow a user to customize the Effort Values (EVs) and Individual Values (IVs) so that further customization for each team can be done.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A Community Page would be the final addition to the site where anyone with an account would be able to share a team that they've made for others to try out in their own games.

@@ -1,0 +1,18 @@
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+$white: #FFFFFF;
+$red: #ff0000;
+$darkRed: #cc0000;
+$blue: #3b4cca;
+$yellow: #ffde00;
+$darkYellow: #b3a125

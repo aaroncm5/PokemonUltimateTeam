@@ -1,0 +1,40 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+    width: 100%;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-header {
+        display: flex;
+        height: 3rem;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 1rem;
+        padding-bottom: 2rem 0;
+
+        &__title {
+            color: $white;
+            font-size: 2rem;
+            margin: 0;
+
+        }
+
+        &__img {
+            height: 3rem;
+        }
+    }
+
+    &-info {
+        padding-top: 1rem;
+        width: 30%;
+        color: $white;
+        text-align: center;
+        line-height: 2rem;
+        
+    }
+}

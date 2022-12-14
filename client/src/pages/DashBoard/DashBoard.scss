@@ -1,0 +1,57 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #222426;
+    padding-bottom: 5rem;
+    color: white;
+    
+
+    @include desktop {
+        flex-direction: row;
+        align-items: flex-start;
+
+    }
+    
+
+    &-container {
+        color: $white;
+        padding: 0 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include desktop {
+            align-items: flex-start;
+        }
+
+        &__title {
+            font-size: 2rem;
+        }
+
+        &__info {
+
+            &-text {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    &__button {
+        border: none;
+        background-color: black;
+        color: $yellow;
+        height: 1.25rem;
+        width: 15rem;
+        border-radius: 25px;
+    }
+
+    &-teams {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,79 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+    background-image: url(../../assets/icons/pngegg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: black;
+    padding: 0 1rem;
+    &-logo {
+        
+
+        &__icon {
+            height: 100%;
+
+         
+            &-image {
+                height:100%;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+}
+
+.nav {
+    display: none;
+
+    @include tablet {
+        display: flex;
+    }
+
+    &-list{
+        @include tablet{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        &__item {
+            @include tablet{
+                display: flex;
+                align-items: center;
+                padding: 0 0.5rem;
+                text-decoration: none;
+                color: white;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+.active {
+    background-color: $red;
+}
+
+.mobile-menu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        height: 50%;
+
+        @include tablet {
+            display: none;
+        }
+
+    }
+}

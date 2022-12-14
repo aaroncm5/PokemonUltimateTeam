@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './App.scss';
+import Header from './components/header/Header';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {useState} from 'react';
+import HomePage from './pages/HomePage/HomePage';
+import PokemonDetails from './pages/PokemonDetailsPage/PokemonDetails';
+import SignUp from './pages/SignUp/SignUp'
+import Login from './pages/Login/Login';
+import Dashboard from './pages/DashBoard/DashBoard';
+import About from './pages/AboutPage/About'
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(null)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<HomePage isLoggedIn = {isLoggedIn}/>}/>
+        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/login' element={<Login setIsLoggedIn = {setIsLoggedIn}/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/details/:pokeId' element={<PokemonDetails/>}/>
+        <Route path='/about' element={<About/>}/>
+      </Routes>
+      
+    
+    </BrowserRouter>
+
   );
 }
 
