@@ -121,16 +121,16 @@ function HomePage({isLoggedIn}) {
       r: {
         angleLines: {
           display: true,
-          color: "white",
+          color: "grey",
         },
         pointLabels: {
           font: {
             size: 15,
-            color: '#FFFFFFF'
+            color: 'white'
           }
         },
         grid: {
-          color: "white",
+          color: "grey",
         },
         title: {
           display: true,
