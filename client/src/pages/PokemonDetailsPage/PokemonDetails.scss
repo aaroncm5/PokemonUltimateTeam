@@ -154,6 +154,7 @@
                 text-align: center;
                 color: $white;
                 margin: 0.5rem 0;
+                text-transform: capitalize;
 
                 @include tablet {
                     width: fit-content;
@@ -183,7 +184,7 @@
         padding: 0 1rem;
 
         @include tablet {
-            width: 75%;
+            width: 50%;
             flex-wrap: wrap;
         }
 

@@ -113,7 +113,7 @@ function PokemonDetails() {
             r: {
                 angleLines: {
                     display: true,
-                    color: 'white'
+                    color: 'grey'
                 },
                 pointLabels: {
                     font: {
@@ -122,7 +122,7 @@ function PokemonDetails() {
                     }
                 },
                 grid: {
-                    color: 'white'
+                    color: 'grey'
                 },
                 title: {
                     display: true

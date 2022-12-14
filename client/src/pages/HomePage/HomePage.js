@@ -38,6 +38,7 @@ function HomePage({isLoggedIn}) {
       return;
     }
 
+    // axios request to get selected pokemon data with random move
     axios.get(`http://localhost:8080/pokemon/${id}/default`).then((res) => {
       setTeam([...team, res.data[0]]);
       sessionStorage.setItem("team", JSON.stringify([...team, res.data[0]]))
@@ -83,7 +84,8 @@ function HomePage({isLoggedIn}) {
     [],
     pokeList
   );
-
+  
+  // check if pokemon list is populated
   if (pokeList.length < 1) {
     return <div>loading</div>;
   }
@@ -119,16 +121,16 @@ function HomePage({isLoggedIn}) {
       r: {
         angleLines: {
           display: true,
-          color: "white",
+          color: "grey",
         },
         pointLabels: {
           font: {
             size: 15,
-            color: '#FFFFFFF'
+            color: 'white'
           }
         },
         grid: {
-          color: "white",
+          color: "grey",
         },
         title: {
           display: true,
@@ -151,6 +153,7 @@ function HomePage({isLoggedIn}) {
       return
     }
   
+    // create team object
     const myTeam = {
       user_id: sessionStorage.getItem('userId'),
       id: uuidv4(),
@@ -158,11 +161,13 @@ function HomePage({isLoggedIn}) {
       team_members: [...team]
     }
 
+    // check if team name is valid
     if (myTeam.team_name.length <1) {
       alert('please add a team name')
       return
     }
 
+    // add the team id and user id to each pokemon as well as break up the move array into 4 separate moves
     for (let i=0; i<myTeam.team_members.length; i++) {
       myTeam.team_members[i].team_id = myTeam.id;
       myTeam.team_members[i].user_id = myTeam.user_id;
@@ -175,6 +180,7 @@ function HomePage({isLoggedIn}) {
       delete myTeam.team_members[i].moves;
     }
 
+    // post the team to the database
     axios.post('http://localhost:8080/pokemon/team', myTeam)
     .then(()=>{
       sessionStorage.removeItem('team')
@@ -233,7 +239,7 @@ function HomePage({isLoggedIn}) {
           </div>
           <div className="create-button">
             <button type="submit" className="create-button__save">Save</button>
-            <button className="create-button__clear" onClick={() => clearTeam()}></button>
+            <button type='button' className="create-button__clear" onClick={() => clearTeam()}></button>
           </div>
           
         </form>
