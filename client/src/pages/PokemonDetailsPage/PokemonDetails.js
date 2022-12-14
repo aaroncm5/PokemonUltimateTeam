@@ -68,7 +68,7 @@ function PokemonDetails() {
             return;
         }
 
-        axios.get(`http://localhost:8080/${id}/default`)
+        axios.get(`${apiUrl}/pokemon/${id}/default`)
         .then((res) => {
             const customPokemon = res.data[0];
             if (moves.length) {
@@ -169,7 +169,7 @@ function PokemonDetails() {
                         <div className='details-custom__moves-list'>
                             {customMoveList.map((move) => {
                                 return (
-                                    <p className='details-custom__moves-list-name'>{move}</p>
+                                    <p className='details-custom__moves-list-name' key={move}>{move}</p>
                                 )
                             })}
                         </div>
