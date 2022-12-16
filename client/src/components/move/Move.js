@@ -4,14 +4,16 @@ import {useState} from 'react';
 
 
 function Move({name, addMove}) {
+    const apiUrl = process.env.react_app_api_url
+
     const [moveInfo, setMoveInfo] = useState(null)
 
-    const [isOpen, setIsOpen] = useState(false)    // console.log(newName)
+    const [isOpen, setIsOpen] = useState(false)
 
     const displayInfo = (name) =>{
         setIsOpen(!isOpen);
         
-        axios.get(`http://localhost:8080/pokemon/move/${name}`)
+        axios.get(`${apiUrl}/pokemon/move/${name}`)
         .then((res) => {
             setMoveInfo(res.data[0]);
         })  

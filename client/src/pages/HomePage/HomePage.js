@@ -4,6 +4,7 @@ import TeamMember from "../../components/teamMember/TeamMember";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Radar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -16,7 +17,10 @@ import {
 ChartJS.register(LineElement, PointElement, Tooltip, RadialLinearScale);
 
 function HomePage({isLoggedIn}) {
+  const apiUrl = process.env.react_app_api_url
+  const navigate = useNavigate()
   const [team, setTeam] = useState([]);
+  const [failedAuth, setFailedAuth] = useState(false);
   const [teamHp, setTeamHp] = useState(0);
   const [teamAtk, setTeamAtk] = useState(0);
   const [teamDef, setTeamDef] = useState(0);
@@ -39,7 +43,7 @@ function HomePage({isLoggedIn}) {
     }
 
     // axios request to get selected pokemon data with random move
-    axios.get(`http://localhost:8080/pokemon/${id}/default`).then((res) => {
+    axios.get(`${apiUrl}/pokemon/${id}/default`).then((res) => {
       setTeam([...team, res.data[0]]);
       sessionStorage.setItem("team", JSON.stringify([...team, res.data[0]]))
     });
@@ -77,10 +81,10 @@ function HomePage({isLoggedIn}) {
   const [pokeList, setPokeList] = useState([]);
   useEffect(
     () => {
-      axios.get(`http://localhost:8080/pokemon/all`).then((res) => {
+      axios.get(`${apiUrl}/pokemon/all`).then((res) => {
         setPokeList(res.data);
       });
-    },
+    },// eslint-disable-next-line react-hooks/exhaustive-deps
     [],
     pokeList
   );
@@ -148,8 +152,19 @@ function HomePage({isLoggedIn}) {
   // store a team in the database
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (isLoggedIn === false) {
-      console.log('please log in')
+    const token = sessionStorage.getItem('token');
+
+    // if (isLoggedIn === false) {
+    //   alert('please log in')
+    //   return
+    // }
+
+    if (!token) {
+      setFailedAuth(true);
+    }
+
+    if (failedAuth) {
+      alert('please log in')
       return
     }
   
@@ -181,7 +196,7 @@ function HomePage({isLoggedIn}) {
     }
 
     // post the team to the database
-    axios.post('http://localhost:8080/pokemon/team', myTeam)
+    axios.post(`${apiUrl}/pokemon/team`, myTeam)
     .then(()=>{
       sessionStorage.removeItem('team')
       setTeam([]);
@@ -189,6 +204,8 @@ function HomePage({isLoggedIn}) {
     })
 
   };
+
+  
 
   return (
     <section className="container">

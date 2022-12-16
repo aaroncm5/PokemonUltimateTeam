@@ -6,11 +6,9 @@ import './SignUp.scss';
 import axios from "axios";
 
 function SignUpForm() {
-    const [fail, setFail] = useState("");
-    const [success, setSuccess] = useState(false);
+    const apiUrl = process.env.react_app_api_url
 
     const onSubmit = (values, actions) => {
-        console.log('submitted')
         const user = {
             user_name: values.name,
             user_username: values.userName,
@@ -18,15 +16,13 @@ function SignUpForm() {
             user_password: values.password
         }
 
-        axios.post('http://localhost:8080/users/signup', user)
+        axios.post(`${apiUrl}/users/signup`, user)
         .then((res) => {
-            setSuccess(true);
-            setFail("");
+
             actions.resetForm();
         })
         .catch((error) => {
-            setSuccess(false);
-            setFail(error.response.data);
+
         });
     }
 
