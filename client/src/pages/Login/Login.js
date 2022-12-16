@@ -20,7 +20,6 @@ function Login( {setIsLoggedIn} ) {
         axios.post(`${apiUrl}/users/login`, user)
         .then((res) => {
             sessionStorage.setItem("token", res.data.token)
-            console.log(res.data)
             setIsLoggedIn(true)
             navigate('/dashboard')
             actions.resetForm();

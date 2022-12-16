@@ -9,7 +9,6 @@ function SignUpForm() {
     const apiUrl = process.env.react_app_api_url
 
     const onSubmit = (values, actions) => {
-        console.log('submitted')
         const user = {
             user_name: values.name,
             user_username: values.userName,
