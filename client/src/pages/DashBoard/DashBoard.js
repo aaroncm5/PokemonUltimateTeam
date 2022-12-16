@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import UserTeam from '../../components/userTeam/UserTeam'
 
 function Dashboard() {
+    const apiUrl = process.env.react_app_api_url
     const [user, setUser] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
     const [userTeams, setUserTeams] = useState([])
@@ -17,7 +18,7 @@ function Dashboard() {
         }
 
         // get user info from database
-        axios.get('http://localhost:8080/users/current', {
+        axios.get(`${apiUrl}/users/current`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -25,7 +26,7 @@ function Dashboard() {
         .then((response) => {
             setUser(response.data);
             sessionStorage.setItem('userId', response.data.id)
-            return axios.get(`http://localhost:8080/team/user/${response.data.id}`)
+            return axios.get(`${apiUrl}/team/user/${response.data.id}`)
         })
         .then((res) => {
             setUserTeams(res.data)
@@ -37,16 +38,16 @@ function Dashboard() {
     }, []);
 
     const deleteTeam = (id) => {
-        axios.delete(`http://localhost:8080/team/${id}`)
+        axios.delete(`${apiUrl}/team/${id}`)
         .then(() => {
             const userId = sessionStorage.getItem('userId')
-            return axios.get(`http://localhost:8080/user/${userId}`)
+            return axios.get(`${apiUrl}/user/${userId}`)
         })
         .then ((res) => {
             setUserTeams(res.data)
         })
         .catch((error) => {
-            console.log(error);
+            // console.log(error);
         });
     }
 
@@ -85,7 +86,6 @@ function Dashboard() {
                     <p className='dashboard-container__info-text'>Trainer Name:   {user.user_username}</p>
                 </div>
                 
-
                 <button className="dashboard__button" onClick={handleLogout}>
                     Log out
                 </button>
@@ -100,10 +100,7 @@ function Dashboard() {
                         </div>
                     )
                 })}
-                
-
-            </section>
-            
+            </section> 
         </main>
     );
 }

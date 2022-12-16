@@ -1,5 +1,4 @@
 import './TeamMember.scss';
-// import {Link} from 'react-router-dom';
 
 
 function TeamMember( {ability1, ability2, attack, defense, special_attack, special_defense, speed, id, name, type1, type2, sprite, moves } ) {
